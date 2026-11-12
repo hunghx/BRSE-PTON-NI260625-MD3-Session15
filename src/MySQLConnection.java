@@ -25,11 +25,23 @@ public class MySQLConnection {
         }
         return null;
     }
+    public static void closeConnection(Connection conn){
+        if (conn != null){
+            try {
+                conn.close();
+                System.out.println("Đóng kết nối thành công");
+            } catch (SQLException e) {
+                System.err.println("Lỗi đóng kết nối");
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void main(String[] args) {
         Connection conn = openConnection();
         if (conn !=null){
             System.out.println("Kết nối thành công !!");
         }
+        closeConnection(conn);
     }
 }
